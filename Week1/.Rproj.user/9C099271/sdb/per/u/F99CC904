@@ -1,0 +1,17 @@
+{
+    "contents" : "---\ntitle: \"First adding -- \"\noutput: html_document\n---\n\nThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.\n\nWhen you click the **Knit** button a document will be generated that includes both content as well as the \noutput of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\n```{r}\nsummary(cars)\n```\n\n```{r}\n# First lecuture\na <- 2\nb <- rep(NA, 10)\nb[2] <- 10\nb <- rep(1, 10)\n\nplot(density(rnorm(1000)))\nplot(density(rnorm(1000)))\nplot(density(rnorm(1000)))\nplot(density(rnorm(1000)))\n\nnorm <- c(1,2,3)\n\nc <- rnorm(10,2,3)\nc <- c(1, 7, 10)\nf <- c * 10\n\nd <- 4 + (c ^ 3) / 2 + log(abs(c))\n\nb[7:10]\n\nvec1 = rnorm(3,2,4)\nvec2 = c(1,2,3)\nvec1 * vec2\nvec1 + vec2\nc(vec1, vec2)\n\nvec1[0] / vec2[2]\n\nvec1 $*% vec2\n\n\nvec1 <- c(1,2,3)\nvec2 <- c(3,5,7)\n\nvec1 * vec2\n\nvec1*3\n\nvec2 <- c(1,2,3,4, \"R\")\n\nvec1 * vec2\n\nletters\n\ntest.data <- data.frame(Series1 = rnorm(100),\n                        Series2 = rnorm(100),\n                        Series3 = sample(LETTERS,100, replace=TRUE))\n\nstr(test.data)\n\nplot(test.data$Series1)\n\nplot(test.data$Series3)\n\nplot(test.data)\n\nsummary(test.data)\n\ntest.data[1, ]\ntest.data[,3]\n\ntest.data[1:10,c(\"Series1\", \"Series2\", \"Series3\")]\ndatalist <- list()\ndatalist[[1]] <- c(\"A\", \"B\", \"C\")\ndatalist[[2]] <- test.data\ndatalist[[3]] <- lm(rnorm(100) ~ rnorm(100))\n\noutput <- function.name(arg1object, arg2 = \"value\", arg3 = anotherobject)\n\nlibrary(readr)\ninflation <- read.csv(\"data/inflation.csv\")\n\nplot.ts(inflation[,3:5])\n\n\ndata <- read_csv(\"\")\n\nplot(inflation[,3:5])\n\ninstall.packages(\"reshape2\")\nlibrary(\"reshape2\")\n\nstate_accounts <- read.csv(\"data/state_accounts.csv\")\nstate_account_molten <- melt(state_accounts, id=\"Date\")\n\nplot (inflation[,c(3, 4)])\n\ninflation\n\n```\n\nYou can also embed plots, for example:\n\n```{r, echo=FALSE}\nplot(cars)\n```\n\nNote that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.\n",
+    "created" : 1438677072107.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3040351591",
+    "id" : "F99CC904",
+    "lastKnownWriteTime" : 0,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}
