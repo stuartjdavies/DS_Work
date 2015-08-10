@@ -1,0 +1,75 @@
+---
+title: "Homework week 1 - Solution"
+author: "Stuart Davies"
+date: "10 August 2015"
+output: html_document
+---
+
+# Required libraries
+```{r results='hide', message=FALSE, warning=FALSE}
+library(dplyr)
+library(stringr)
+library(reshape2)
+library(Hmisc)
+library(zoo)
+library("knitr","xtable")
+```
+
+# Task 1 - Analysis of Fund manager data
+## Code
+```{r}
+load("data/complete_data.RData")
+
+avgReturns <- melt(SA2,id=c("Name", "Global Broad Category Group","Global Category","Morningstar Category", "MPT Benchmark"))  %>% 
+  mutate(Date = paste0(str_extract(variable, "[0-9]{4}-[0-9]{2}"), "-01") %>% as.Date) %>% 
+  filter(!is.na(value)) %>%
+  group_by(Name) %>% 
+  summarise(`Average returns` = mean(value)) %>% collect %>% 
+  arrange(desc(`Average returns`))
+```
+
+
+## Results
+### Top Fund Manager average returns
+Top fund manager - `r avgReturns[1,]$Name`
+
+### Top 10 - Fund Managers average returns
+```{r echo=FALSE, message=FALSE}
+kable(head(avgReturns, 10),format="markdown")
+```
+
+# Task 2 - Analysis of Invoice data
+## Load invoice data
+```{r}
+invoices <- read.csv("data/invoices.csv")
+```
+
+## Monthly sales
+### Code
+```{r}
+monthlySales <- invoices %>%
+                  mutate(`Year and month`=as.yearmon(as.POSIXlt(strptime(gsub("[A-Z]{4}", "", date), "%a %b %d %H:%M:%S %Y")), "%Y %m")) %>%
+                  group_by(`Year and month`) %>% 
+                  summarise(`Total`=sum(total)) %>% 
+                  arrange(desc(`Year and month`))
+```
+### Results
+```{r echo=FALSE, message=FALSE}
+kable(head(monthlySales),format="markdown")
+```
+
+## Daily sales
+### Code
+```{r}
+dailySales <- invoices %>%
+                mutate(`Year, month and day`=as.Date(as.POSIXlt(strptime(gsub("[A-Z]{4}", "", date), "%a %b %d %H:%M:%S %Y")))) %>%
+                group_by(`Year, month and day`) %>% 
+                summarise(`Total`=sum(total)) %>% 
+                arrange(desc(`Year, month and day`))
+```
+
+### Results
+```{r echo=FALSE, message=FALSE}
+kable(head(dailySales),format="markdown")
+```
+
